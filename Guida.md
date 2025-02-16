@@ -47,3 +47,43 @@ sudo ufw allow 443/tcp
 
 # Enable the firewall
 sudo ufw enable
+
+---
+
+##3️⃣ Installing Nextcloud or OwnCloud
+
+# Update system and install necessary packages
+sudo apt update && sudo apt upgrade -y
+sudo apt install apache2 mariadb-server libapache2-mod-php php php-mysql php-xml php-gd php-curl php-zip php-mbstring -y
+
+# Download and install Nextcloud
+wget https://download.nextcloud.com/server/releases/latest.tar.bz2
+sudo tar -xjf latest.tar.bz2 -C /var/www/html/
+sudo chown -R www-data:www-data /var/www/html/nextcloud/
+sudo chmod -R 755 /var/www/html/nextcloud/
+
+##🔹 Option 2: Installing OwnCloud
+# Download and install OwnCloud
+wget https://download.owncloud.org/community/owncloud-complete-latest.tar.bz2
+sudo tar -xjf owncloud-complete-latest.tar.bz2 -C /var/www/html/
+sudo chown -R www-data:www-data /var/www/html/owncloud/
+sudo chmod -R 755 /var/www/html/owncloud/
+
+##🔹 MySQL Database Configuration
+# Access MySQL
+sudo mysql -u root -p
+
+# Create database and user
+CREATE DATABASE nextcloud;
+CREATE USER 'nextclouduser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+
+#4️⃣ Domain Configuration & HTTPS
+##🌐 Option 1: DuckDNS (Free Domain)
+Visit DuckDNS
+Register a subdomain (e.g., yourname.duckdns.org)
+Configure DNS to point to your instance’s public IP
+
