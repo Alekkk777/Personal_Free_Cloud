@@ -1,59 +1,59 @@
-# ☁️ Personal Free Cloud - Nextcloud & OwnCloud su Oracle Cloud
+# ☁️ Personal Free Cloud - Nextcloud & OwnCloud on Oracle Cloud
 
-## 📌 Introduzione
+## 📌 Introduction
 
-Questa guida dettagliata illustra come creare un **cloud personale completamente gratuito con spazio fino a 200GB** utilizzando **Nextcloud** o **OwnCloud** su un'istanza Oracle Cloud. Il nostro obiettivo è realizzare una piattaforma di archiviazione sicura, accessibile ovunque, e utilizzabile per **condivisione file, collaborazione e gestione documentale**.
+This detailed guide explains how to create a **completely free personal cloud with up to 200GB of storage** using **Nextcloud** or **OwnCloud** on an Oracle Cloud instance. Our goal is to build a **secure storage platform**, accessible from anywhere, for **file sharing, collaboration, and document management**.
 
-## 🎯 Obiettivi del progetto
+## 🎯 Project Goals
 
-✅ **Cloud personale senza limiti di spazio**  
-✅ **Protezione avanzata dei dati con crittografia e HTTPS**  
-✅ **Accesso multiutente con gestione dei permessi**  
-✅ **Facile integrazione con domini personalizzati e certificati SSL**  
-✅ **Automazione del backup per garantire la sicurezza dei dati**
+✅ **Unlimited personal cloud storage**  
+✅ **Advanced data protection with encryption and HTTPS**  
+✅ **Multi-user access with permission management**  
+✅ **Easy integration with custom domains and SSL certificates**  
+✅ **Automated backup for data security**  
 
-## 🚀 Tecnologie Utilizzate
+## 🚀 Technologies Used
 
 - **Oracle Cloud Infrastructure (OCI)**
 - **Ubuntu 22.04 LTS**
 - **Nextcloud / OwnCloud**
 - **Apache2 + PHP + MariaDB**
-- **Let's Encrypt (Certificato SSL)**
-- **Cloudflare / DuckDNS per il dominio**
-- **Firewall UFW e Fail2Ban per la sicurezza**
+- **Let's Encrypt (SSL Certificate)**
+- **Cloudflare / DuckDNS for domain management**
+- **UFW Firewall and Fail2Ban for security**
 
-## 📂 Contenuto della Guida
+## 📂 Guide Contents
 
-Questa repository contiene una guida dettagliata con **tutti i passaggi necessari** per configurare un **cloud storage privato** su Oracle Cloud. Nella documentazione troverai:
+This repository contains a detailed step-by-step guide to setting up a **private cloud storage** on Oracle Cloud. The documentation includes:
 
-1️⃣ **Creazione e configurazione dell'istanza su Oracle Cloud**  
-2️⃣ **Impostazione della rete e apertura delle porte**  
-3️⃣ **Installazione e configurazione di Nextcloud o OwnCloud**  
-4️⃣ **Collegamento del dominio e attivazione HTTPS**  
-5️⃣ **Espansione dello spazio di archiviazione su Oracle**  
-6️⃣ **Protezione e sicurezza del server**  
-7️⃣ **Automazione dei backup con Cron Jobs**
+1️⃣ **Creating and configuring an Oracle Cloud instance**  
+2️⃣ **Setting up networking and opening required ports**  
+3️⃣ **Installing and configuring Nextcloud or OwnCloud**  
+4️⃣ **Connecting a custom domain and enabling HTTPS**  
+5️⃣ **Expanding storage space on Oracle Cloud**  
+6️⃣ **Securing and protecting the server**  
+7️⃣ **Automating backups with Cron Jobs**  
 
-## 📖 Come Utilizzare Questa Guida
+## 📖 How to Use This Guide
 
-Puoi seguire la guida passo dopo passo oppure personalizzarla in base alle tue esigenze. La documentazione è pensata per **essere modulare**, quindi puoi implementare solo le parti che ti servono.
+You can follow the guide **step by step** or customize it based on your needs. The documentation is designed to be **modular**, so you can implement only the parts you need.
 
 ---
 
-## 🌐 Link Utili
+## 🌐 Useful Links
 
-🔗 [Nextcloud - Sito Ufficiale](https://nextcloud.com/)  
-🔗 [OwnCloud - Sito Ufficiale](https://owncloud.com/)  
+🔗 [Nextcloud - Official Website](https://nextcloud.com/)  
+🔗 [OwnCloud - Official Website](https://owncloud.com/)  
 🔗 [Oracle Cloud - Free Tier](https://www.oracle.com/cloud/free/)  
-🔗 [DuckDNS - Dominio Gratuito](https://www.duckdns.org/)  
-🔗 [Let's Encrypt - Certificati SSL](https://letsencrypt.org/)  
+🔗 [DuckDNS - Free Domain](https://www.duckdns.org/)  
+🔗 [Let's Encrypt - SSL Certificates](https://letsencrypt.org/)  
 
 ---
 
-## 🤝 Contributi
+## 🤝 Contributions
 
-Questa repository è aperta a contributi! Se hai suggerimenti, miglioramenti o vuoi segnalare problemi, sentiti libero di **aprire una Issue o inviare una Pull Request**.
+This repository is **open to contributions**! If you have suggestions, improvements, or want to report issues, feel free to **open an Issue or submit a Pull Request**.
 
-### 📩 Contattaci
+### 📩 Contact Us
 
-Se hai bisogno di aiuto, puoi lasciare un commento nella sezione **Issues** della repository. 🚀
+If you need help, feel free to leave a comment in the **Issues** section of the repository. 🚀

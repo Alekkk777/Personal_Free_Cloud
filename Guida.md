@@ -47,10 +47,10 @@ sudo ufw allow 443/tcp
 
 # Enable the firewall
 sudo ufw enable
-
+```
 ---
 
-##3️⃣ Installing Nextcloud or OwnCloud
+## 3️⃣ Installing Nextcloud or OwnCloud
 
 # Update system and install necessary packages
 sudo apt update && sudo apt upgrade -y
@@ -62,14 +62,14 @@ sudo tar -xjf latest.tar.bz2 -C /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/nextcloud/
 sudo chmod -R 755 /var/www/html/nextcloud/
 
-##🔹 Option 2: Installing OwnCloud
+## 🔹 Option 2: Installing OwnCloud
 # Download and install OwnCloud
 wget https://download.owncloud.org/community/owncloud-complete-latest.tar.bz2
 sudo tar -xjf owncloud-complete-latest.tar.bz2 -C /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/owncloud/
 sudo chmod -R 755 /var/www/html/owncloud/
 
-##🔹 MySQL Database Configuration
+## 🔹 MySQL Database Configuration
 # Access MySQL
 sudo mysql -u root -p
 
@@ -80,10 +80,108 @@ GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 
+---
 
-#4️⃣ Domain Configuration & HTTPS
-##🌐 Option 1: DuckDNS (Free Domain)
+# 4️⃣ Domain Configuration & HTTPS
+## 🌐 Option 1: DuckDNS (Free Domain)
 Visit DuckDNS
 Register a subdomain (e.g., yourname.duckdns.org)
 Configure DNS to point to your instance’s public IP
 
+# 🔐 Option 2: Let's Encrypt SSL for HTTPS
+# Install Certbot for Apache
+sudo apt install certbot python3-certbot-apache -y
+
+# Generate and install SSL certificate
+sudo certbot --apache -d yourdomain.duckdns.org
+
+After installation, Nextcloud will be accessible securely via HTTPS.
+
+---
+
+# 5️⃣ Expanding Storage Capacity
+
+If you want to add more storage (e.g., Oracle’s free 150GB block storage):
+# Check available disks
+sudo lsblk  
+
+# Create a partition
+sudo parted /dev/sdb mklabel gpt
+sudo parted -a optimal /dev/sdb mkpart primary ext4 0% 100%
+
+# Format the disk
+sudo mkfs.ext4 /dev/sdb1
+
+# Create a mount point and mount the disk
+sudo mkdir /mnt/storage
+sudo mount /dev/sdb1 /mnt/storage
+
+
+Make it permanent:
+# Add configuration to fstab
+echo '/dev/sdb1 /mnt/storage ext4 defaults 0 2' | sudo tee -a /etc/fstab
+
+---
+
+# 6️⃣ Security & Server Protection
+
+🔒 Advanced Protection with Fail2Ban
+
+# Install Fail2Ban
+sudo apt install fail2ban -y
+
+# Enable the service
+sudo systemctl enable fail2ban --now
+
+
+# 🔐 Strengthening SSH Security
+# Edit SSH configuration file
+sudo nano /etc/ssh/sshd_config
+
+Modify the following lines:
+PermitRootLogin no
+PasswordAuthentication no
+MaxAuthTries 3
+
+
+Restart SSH to apply changes:
+# Restart SSH service
+sudo systemctl restart ssh
+
+---
+
+# 7️⃣ Automated Backup with Cron Job
+# Create a backup script
+sudo nano /etc/cron.daily/backup-nextcloud
+
+Insert the following:
+#!/bin/bash
+tar -czf /mnt/storage/nextcloud-backup-$(date +%F).tar.gz /var/www/html/nextcloud
+
+Save and make executable:
+# Grant execution permissions
+sudo chmod +x /etc/cron.daily/backup-nextcloud
+
+# Grant execution permissions
+sudo chmod +x /etc/cron.daily/backup-nextcloud
+
+## 📱 Mobile Access Setup
+### Setting up mobile and tablet access to your Nextcloud
+
+---
+
+### iOS (iPhone/iPad) Setup
+```bash
+# 1. Download Nextcloud app
+- Open App Store
+- Search for "Nextcloud"
+- Install official Nextcloud app
+
+# 2. Configure connection
+- Open Nextcloud app
+- Enter server address:
+http://your-ip/nextcloud
+
+# 3. Login with:
+- Username: your-username
+- Password: your-password
