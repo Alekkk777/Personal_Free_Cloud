@@ -1,4 +1,4 @@
-# ☁️ Personal Free Cloud - Nextcloud & OwnCloud on Oracle Cloud
+# ☁️ Personal Free Cloud - Nextcloud on Oracle Cloud
 
 ## 📌 Introduction
 
@@ -32,7 +32,7 @@ This repository contains a detailed step-by-step guide to setting up a **private
 4️⃣ **Connecting a custom domain and enabling HTTPS**  
 5️⃣ **Expanding storage space on Oracle Cloud**  
 6️⃣ **Securing and protecting the server**  
-7️⃣ **Automating backups with Cron Jobs**  
+7️⃣ **Automating backups with Cron Jobs** 
 
 ## 📖 How to Use This Guide
 

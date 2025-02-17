@@ -1,4 +1,4 @@
-# 📁 Creating a Personal Cloud with Nextcloud or OwnCloud on Oracle Cloud 🚀
+# 📁 Creating a Personal Cloud with Nextcloud on Oracle Cloud 🚀
 
 ## 📌 Introduction
 This guide will help you set up a **free, unlimited personal cloud** using **Nextcloud or OwnCloud** on an **Oracle Cloud instance**. This cloud can be used for **storage, sharing, and team collaboration**, ensuring **security and scalability**.
@@ -52,28 +52,28 @@ sudo ufw enable
 
 ## 3️⃣ Installing Nextcloud or OwnCloud
 
-# Update system and install necessary packages
+## Update system and install necessary packages
 sudo apt update && sudo apt upgrade -y
 sudo apt install apache2 mariadb-server libapache2-mod-php php php-mysql php-xml php-gd php-curl php-zip php-mbstring -y
 
-# Download and install Nextcloud
+## Download and install Nextcloud
 wget https://download.nextcloud.com/server/releases/latest.tar.bz2
 sudo tar -xjf latest.tar.bz2 -C /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/nextcloud/
 sudo chmod -R 755 /var/www/html/nextcloud/
 
 ## 🔹 Option 2: Installing OwnCloud
-# Download and install OwnCloud
+## Download and install OwnCloud
 wget https://download.owncloud.org/community/owncloud-complete-latest.tar.bz2
 sudo tar -xjf owncloud-complete-latest.tar.bz2 -C /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/owncloud/
 sudo chmod -R 755 /var/www/html/owncloud/
 
 ## 🔹 MySQL Database Configuration
-# Access MySQL
+## Access MySQL
 sudo mysql -u root -p
 
-# Create database and user
+## Create database and user
 CREATE DATABASE nextcloud;
 CREATE USER 'nextclouduser'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost';
@@ -88,11 +88,11 @@ Visit DuckDNS
 Register a subdomain (e.g., yourname.duckdns.org)
 Configure DNS to point to your instance’s public IP
 
-# 🔐 Option 2: Let's Encrypt SSL for HTTPS
-# Install Certbot for Apache
+## 🔐 Option 2: Let's Encrypt SSL for HTTPS
+## Install Certbot for Apache
 sudo apt install certbot python3-certbot-apache -y
 
-# Generate and install SSL certificate
+## Generate and install SSL certificate
 sudo certbot --apache -d yourdomain.duckdns.org
 
 After installation, Nextcloud will be accessible securely via HTTPS.
@@ -102,23 +102,23 @@ After installation, Nextcloud will be accessible securely via HTTPS.
 # 5️⃣ Expanding Storage Capacity
 
 If you want to add more storage (e.g., Oracle’s free 150GB block storage):
-# Check available disks
+## Check available disks
 sudo lsblk  
 
-# Create a partition
+## Create a partition
 sudo parted /dev/sdb mklabel gpt
 sudo parted -a optimal /dev/sdb mkpart primary ext4 0% 100%
 
-# Format the disk
+## Format the disk
 sudo mkfs.ext4 /dev/sdb1
 
-# Create a mount point and mount the disk
+## Create a mount point and mount the disk
 sudo mkdir /mnt/storage
 sudo mount /dev/sdb1 /mnt/storage
 
 
 Make it permanent:
-# Add configuration to fstab
+## Add configuration to fstab
 echo '/dev/sdb1 /mnt/storage ext4 defaults 0 2' | sudo tee -a /etc/fstab
 
 ---
@@ -127,15 +127,15 @@ echo '/dev/sdb1 /mnt/storage ext4 defaults 0 2' | sudo tee -a /etc/fstab
 
 🔒 Advanced Protection with Fail2Ban
 
-# Install Fail2Ban
+## Install Fail2Ban
 sudo apt install fail2ban -y
 
-# Enable the service
+## Enable the service
 sudo systemctl enable fail2ban --now
 
 
-# 🔐 Strengthening SSH Security
-# Edit SSH configuration file
+## 🔐 Strengthening SSH Security
+## Edit SSH configuration file
 sudo nano /etc/ssh/sshd_config
 
 Modify the following lines:
@@ -145,13 +145,13 @@ MaxAuthTries 3
 
 
 Restart SSH to apply changes:
-# Restart SSH service
+## Restart SSH service
 sudo systemctl restart ssh
 
 ---
 
 # 7️⃣ Automated Backup with Cron Job
-# Create a backup script
+## Create a backup script
 sudo nano /etc/cron.daily/backup-nextcloud
 
 Insert the following:
@@ -159,10 +159,10 @@ Insert the following:
 tar -czf /mnt/storage/nextcloud-backup-$(date +%F).tar.gz /var/www/html/nextcloud
 
 Save and make executable:
-# Grant execution permissions
+## Grant execution permissions
 sudo chmod +x /etc/cron.daily/backup-nextcloud
 
-# Grant execution permissions
+## Grant execution permissions
 sudo chmod +x /etc/cron.daily/backup-nextcloud
 
 ## 📱 Mobile Access Setup
